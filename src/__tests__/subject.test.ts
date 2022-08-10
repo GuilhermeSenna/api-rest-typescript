@@ -1,12 +1,9 @@
 import supertest from 'supertest'
 import { createServer } from '../util/server'
-// import { AppDataSource, TestAppDataSource } from '../data-source';
-import { DataSource } from 'typeorm';
-import { initializeDataSource } from './config';
 import { AppDataSource, InMemoryDatabase } from '../data-source';
 
 let app: unknown;
-let dataSource: DataSource;
+// Prevent warning about import
 jest.useFakeTimers();
 
 beforeAll(async () => {
