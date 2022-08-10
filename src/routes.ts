@@ -5,6 +5,7 @@ import { SubjectController } from "./controllers/SubjectController";
 const routes = Router();
 
 routes.post('/subject', new SubjectController().create);
+routes.get('/subject/:idSubject', new SubjectController().getSubject);
 routes.get('/room', new RoomController().list)
 routes.post('/room', new RoomController().create);
 routes.post('/room/:idRoom/create', new RoomController().createVideo)
