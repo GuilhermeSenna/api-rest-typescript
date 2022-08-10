@@ -38,11 +38,16 @@ export class SubjectController {
 
     async testGetSubject(req: Request, res: Response) {
 
-        const { name, userShouldExist } = req.body;
+        try {
 
-        if (!userShouldExist)
-            return res.status(404).json({ message: "Subject doesn't exist" });
+            const { name, userShouldExist } = req.body;
 
-        return res.status(201).json({ name });
+            if (!userShouldExist)
+                return res.status(404).json({ message: "Subject doesn't exist" });
+
+            return res.status(201).json({ name });
+        } catch (e) {
+            console.log(e);
+        }
     }
 }
