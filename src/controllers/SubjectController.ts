@@ -20,4 +20,19 @@ export class SubjectController {
             return res.status(500).json({ mensagem: 'Internal Server Error' })
         }
     }
+
+    async getSubject(req: Request, res: Response) {
+        const { idSubject } = req.params;
+
+        try {
+            const subject = await subjectRepository.findOneBy({ id: Number(idSubject) });
+
+            if (!subject) return res.status(404).json({ message: "Subject doesn't exist" });
+
+            return res.status(201).json(subject);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ message: 'Internal Server Error' });
+        }
+    }
 }
