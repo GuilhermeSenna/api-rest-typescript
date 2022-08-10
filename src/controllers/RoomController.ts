@@ -25,9 +25,8 @@ export class RoomController {
         try {
             const room = await roomRepository.findOneBy({ id: Number(idRoom) });
 
-            if (!room) {
+            if (!room)
                 return res.status(404).json({ message: 'Aula não existe' });
-            }
 
             const newVideo = videoRepository.create({
                 title,
@@ -52,15 +51,11 @@ export class RoomController {
         try {
             const room = await roomRepository.findOneBy({ id: Number(idRoom) });
 
-            if (!room) {
-                return res.status(404).json({ message: 'Sala não existe' });
-            }
+            if (!room) return res.status(404).json({ message: 'Sala não existe' });
 
             const subject = await subjectRepository.findOneBy({ id: Number(subject_id) })
 
-            if (!subject) {
-                return res.status(404).json({ message: 'Aula não existe' });
-            }
+            if (!subject) return res.status(404).json({ message: 'Aula não existe' });
 
             const roomUpdate = {
                 ...room,
