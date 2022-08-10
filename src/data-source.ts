@@ -16,11 +16,10 @@ export const AppDataSource = new DataSource({
     migrationsRun: true, // automatically run migrations before the tests
 });
 
-export const InMemoryAppDataSource = new DataSource({
+export const InMemoryDatabase = new DataSource({
     name: 'default',
     type: 'better-sqlite3',
     database: ':memory:',
     entities: [`${__dirname}/**/entities/*.{ts,js}`],
-    // dropSchema: true, // To delete data after test
     synchronize: true
-})
+});
