@@ -13,4 +13,6 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     entities: [`${__dirname}/**/entities/*.{ts,js}`],
     migrations: [`${__dirname}/**/migrations/*.{ts,js}`],
+    dropSchema: true, // To delete data after test
+    migrationsRun: true, // automatically run migrations before the tests
 })
