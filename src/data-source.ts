@@ -13,8 +13,8 @@ if (process.env.STATUS === 'test') {
         database: ':memory:',
         entities: [`${__dirname}/**/entities/*.{ts,js}`],
         migrations: [`${__dirname}/**/migrations/testmigrations/*.{ts,js}`],
-        // synchronize: true,
-        migrationsRun: true
+        synchronize: true,
+        // migrationsRun: true
     });
 } else {
     AppDataSource = new DataSource({
