@@ -35,19 +35,4 @@ export class SubjectController {
             return res.status(500).json({ message: 'Internal Server Error' });
         }
     }
-
-    async testGetSubject(req: Request, res: Response) {
-
-        try {
-
-            const { name, userShouldExist } = req.body;
-
-            if (!userShouldExist)
-                return res.status(404).json({ message: "Subject doesn't exist" });
-
-            return res.status(201).json({ name });
-        } catch (e) {
-            console.log(e);
-        }
-    }
 }
