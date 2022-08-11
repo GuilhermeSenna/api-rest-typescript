@@ -9,6 +9,9 @@ jest.useFakeTimers();
 beforeAll(async () => {
     app = await createServer();
 
+    if (process.env.STATUS !== 'test')
+        throw new Error(`Change .env STATUS to 'test'`)
+
     await AppDataSource.initialize();
 });
 
