@@ -1,6 +1,6 @@
 import supertest from 'supertest'
 import { createServer } from '../util/server'
-import { AppDataSource, InMemoryDatabase } from '../data-source';
+import { AppDataSource } from '../data-source';
 
 let app: unknown;
 // Prevent warning about import
@@ -9,11 +9,8 @@ jest.useFakeTimers();
 beforeAll(async () => {
     app = await createServer();
 
-    await InMemoryDatabase.initialize();
+    await AppDataSource.initialize();
 });
-
-// afterAll(async () => dataSource.destroy);
-
 
 describe('subject', () => {
     describe('get subject route', () => {
