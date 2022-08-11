@@ -1,4 +1,3 @@
-
 import { AppDataSource } from "../data-source";
 import { Subject } from "../entities/Subject";
 
