@@ -6,6 +6,7 @@ const routes = Router();
 
 routes.post('/subject', new SubjectController().create);
 routes.get('/subject/:idSubject', new SubjectController().getSubject);
+routes.delete('/subject/:idSubject', new SubjectController().getSubject);
 routes.post('/testsubject', new SubjectController().testGetSubject);
 routes.get('/room', new RoomController().list)
 routes.post('/room', new RoomController().create);
