@@ -19,32 +19,38 @@ describe('subject', () => {
     describe('get subject route', () => {
 
         it("should return 404 to an non-existent user", async () => {
-            const query = { userShouldExist: false }
-
-            const res = await supertest(app)
-                .post('/testsubject')
-                .send(query)
+            await supertest(app)
+                .get('/subject/1')
                 .expect(404);
         });
 
         it("should return 201 to successfully create a new user", async () => {
             const name = 'fulano';
-            const query = { userShouldExist: true, name }
+            const query = { name }
 
-            const res = await supertest(app)
-                .post('/testsubject')
+            await supertest(app)
+                .post('/subject')
                 .send(query)
-                .expect({ name }) // Return the name of created user
+                .expect({ ...query, id: 1 }) // Return the name of created user + ID
                 .expect(201);
         });
 
-        describe('given the subject does not exist', () => {
+        it("should return 200 to successfully get an user", async () => {
+            await supertest(app)
+                .get('/subject/1')
+                .expect(200);
+        });
 
-            it("should return a 404", async () => {
-                const subjectId = 0;
+        it("should return 200 to successfully remove user", async () => {
+            await supertest(app)
+                .delete('/subject/1')
+                .expect(200);
+        });
 
-                const res = await supertest(app).get(`/subject/0`).expect(404);
-            });
+        it("should return 404 to try to delete an non-existent user", async () => {
+            await supertest(app)
+                .delete('/subject/1')
+                .expect(404);
         });
     });
 });
