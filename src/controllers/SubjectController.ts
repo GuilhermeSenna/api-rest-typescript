@@ -29,7 +29,25 @@ export class SubjectController {
 
             if (!subject) return res.status(404).json({ message: "Subject doesn't exist" });
 
-            return res.status(201).json(subject);
+            return res.status(200).json(subject);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ message: 'Internal Server Error' });
+        }
+    }
+
+    async deleteSubject(req: Request, res: Response) {
+        const { idSubject } = req.params;
+
+        try {
+
+            const subjectExists = await subjectRepository.findOneBy({ id: Number(idSubject) });
+
+            if (!subjectExists) return res.status(404).json({ message: "Subject doesn't exist" });
+
+            let subject = await subjectRepository.delete({ id: Number(idSubject) });
+
+            return res.status(200).json(subject);
         } catch (error) {
             console.log(error);
             return res.status(500).json({ message: 'Internal Server Error' });
