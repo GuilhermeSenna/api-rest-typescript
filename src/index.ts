@@ -1,11 +1,11 @@
 import express from 'express';
-import { InMemoryDatabase } from './data-source';
+import { AppDataSource } from './data-source';
 import { createServer } from './util/server'
 
 const app = createServer()
 
 const startServer = async () => {
-    await InMemoryDatabase.initialize();
+    await AppDataSource.initialize();
     console.log('Connected to the database!');
 
     app.listen(process.env.port);
